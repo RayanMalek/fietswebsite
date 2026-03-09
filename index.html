@@ -601,7 +601,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
-    .about-content { }
+    .about-content { display: block; }
     .about-title {
       font-size: clamp(2.8rem, 5vw, 4.5rem);
       color: var(--cream);
@@ -628,7 +628,7 @@
       display: flex;
       gap: 40px;
     }
-    .stat-block { }
+    .stat-block { display: block; }
     .stat-number {
       font-family: 'Big Shoulders Display', sans-serif;
       font-weight: 800;
@@ -654,7 +654,7 @@
       gap: 72px;
       margin-bottom: 60px;
     }
-    .findus-col { }
+    .findus-col { display: block; }
     .findus-title {
       font-size: clamp(2.4rem, 4vw, 3.5rem);
       color: var(--cream);
@@ -836,6 +836,7 @@
 
     /* ── RESPONSIVE ───────────────────────────────────────────────── */
     @media (max-width: 900px) {
+      /* Nav */
       .nav-links { display: none; }
       .nav-links.open {
         display: flex;
@@ -848,32 +849,78 @@
         gap: 32px;
         z-index: 90;
       }
-      .nav-links.open a { font-size: 1.5rem; color: var(--cream); }
+      .nav-links.open a { font-size: 1.6rem; color: var(--cream); letter-spacing: 0.06em; }
       .nav-toggle { display: flex; z-index: 101; }
 
+      /* Trust bar */
       .trust-grid { grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(240,234,216,0.08); }
-      .trust-item { background: var(--mid); border-right: none; padding: 16px; }
+      .trust-item { background: var(--mid); border-right: none; padding: 14px 16px; }
 
-      .repair-grid { grid-template-columns: 1fr; }
-      .repair-photo-wrap { order: -1; }
-      .repair-photo-badge { bottom: -12px; right: -12px; }
+      /* Sections */
+      #repair, #bikes, #about { padding: 72px 0; }
+      #findus { padding: 72px 0 0; }
 
+      /* Repair */
+      .repair-grid { grid-template-columns: 1fr; gap: 48px; }
+      .repair-photo-wrap { order: -1; overflow: visible; }
+      .repair-photo-wrap img { aspect-ratio: 16/10; object-position: center 25%; }
+      .repair-photo-badge { bottom: 16px; right: 16px; }
+
+      /* Bikes */
       .bikes-grid { grid-template-columns: 1fr 1fr; }
-      .bikes-note { text-align: left; }
+      .bikes-note { text-align: left; max-width: 100%; }
+      .bikes-header { margin-bottom: 36px; }
 
-      .about-grid { grid-template-columns: 1fr; }
-      .about-photo-wrap { max-width: 340px; }
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-photo-wrap { max-width: 280px; }
+      .about-photo-frame { right: -16px; bottom: -16px; top: 16px; left: 16px; }
 
-      .findus-grid { grid-template-columns: 1fr; gap: 48px; }
+      /* Find us */
+      .findus-grid { grid-template-columns: 1fr; gap: 40px; }
+      .findus-col:last-child p.label { margin-top: 0 !important; }
     }
 
     @media (max-width: 600px) {
-      .hero-title { font-size: clamp(3rem, 14vw, 6rem); }
-      .trust-grid { grid-template-columns: 1fr; }
-      .trust-item { border-bottom: 1px solid rgba(240,234,216,0.08); border-right: none; }
-      .bikes-grid { grid-template-columns: 1fr; }
-      .about-stats { gap: 24px; flex-wrap: wrap; }
+      /* Hero */
+      .hero-title { font-size: clamp(3.2rem, 15vw, 5.5rem); }
+      .hero-content { padding-top: 80px; }
+      .hero-tagline { font-size: 1rem; margin-bottom: 32px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .btn-primary { width: 100%; justify-content: center; font-size: 0.95rem; padding: 15px 20px; }
       .hero-scroll { display: none; }
+
+      /* Trust */
+      .trust-grid { grid-template-columns: 1fr; gap: 0; }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(240,234,216,0.08); padding: 14px 20px; }
+      .trust-item:last-child { border-bottom: none; }
+
+      /* Sections */
+      #repair, #bikes, #about { padding: 56px 0; }
+      #findus { padding: 56px 0 0; }
+      .section-title { font-size: clamp(2rem, 8vw, 3rem); }
+      .about-title { font-size: clamp(2.4rem, 9vw, 3.5rem); }
+      .findus-title { font-size: clamp(2rem, 8vw, 3rem); }
+
+      /* Repair */
+      .repair-grid { gap: 32px; }
+      .repair-list { grid-template-columns: 1fr; gap: 8px; }
+      .repair-photo-badge { font-size: 0.7rem; padding: 12px 14px; }
+
+      /* Bikes */
+      .bikes-grid { grid-template-columns: 1fr; }
+      .bikes-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+      /* About */
+      .about-photo-wrap { max-width: 220px; }
+      .about-photo-frame { display: none; }
+      .about-stats { gap: 20px; flex-wrap: wrap; }
+      .stat-number { font-size: 2.2rem; }
+
+      /* Find us */
+      .cta-buttons-stack { display: flex; }
+      .btn-call, .btn-whatsapp { font-size: 0.9rem; padding: 15px 18px; }
+      .map-wrap { height: 300px; }
     }
 
     /* ── SCROLL ANIMATION ─────────────────────────────────────────── */
@@ -951,8 +998,8 @@
           </svg>
         </div>
         <div class="trust-text">
-          <strong>[Kenmerk 1]</strong>
-          <span>[Korte omschrijving]</span>
+          <strong>Alle merken</strong>
+          <span>Van Batavus tot Gazelle</span>
         </div>
       </div>
       <div class="trust-item">
@@ -962,8 +1009,8 @@
           </svg>
         </div>
         <div class="trust-text">
-          <strong>[Kenmerk 2]</strong>
-          <span>[Korte omschrijving]</span>
+          <strong>Eerlijke prijzen</strong>
+          <span>Geen verrassingen achteraf</span>
         </div>
       </div>
       <div class="trust-item">
@@ -973,8 +1020,8 @@
           </svg>
         </div>
         <div class="trust-text">
-          <strong>[Kenmerk 3]</strong>
-          <span>[Korte omschrijving]</span>
+          <strong>Snelle service</strong>
+          <span>Vaak dezelfde dag klaar</span>
         </div>
       </div>
       <div class="trust-item">
@@ -984,8 +1031,8 @@
           </svg>
         </div>
         <div class="trust-text">
-          <strong>[Kenmerk 4]</strong>
-          <span>[Korte omschrijving]</span>
+          <strong>Al jaren in de buurt</strong>
+          <span>Een begrip in Enschede</span>
         </div>
       </div>
     </div>
